@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<ui:composition template="adm_plantilla.xhtml">
+	<ui:define name="pageTitle">Proveedor Edicion</ui:define>
+
+		<ui:define name="listImagen">		
+		
+            <img src="#{proveedor.newproveedor.urlFotoPerfil}" class="img-circle"  width="125" height="125"/>
+            <br/>
+        </ui:define>
+
+	<ui:define name="contenido">
+		<h:form enctype="multipart/form-data">
+
+			
+
+			<div class="col-lg-12 text-center">
+				<h2>Proveedor Edicion</h2>
+				<hr class="star-primary" />
+			</div>
+			
+			<img src="#{proveedor.newproveedor.urlFotoPortada}"  width="800" height="300"/>
+			
+			<br/>
+			<br/>
+			
+			<h:dataTable value="#{proveedor.newproveedor}" var="vete" class="table">						
+				
+				<h:column>			
+				
+			  <div class="form-group">
+			    <h4><b>Nombre: </b>#{vete.nombre}<br/><br/>
+			    <b>Correo: </b>#{vete.correo}<br/><br/>
+			    <b>Username: </b>#{vete.username}<br/><br/>
+			    <b>Direccion: </b>#{vete.direccion}<br/><br/>
+				<b>Horario: </b>#{vete.horario}<br/><br/>
+				<b>Sitio Web: </b><a href="#{vete.sitioWeb}">#{vete.sitioWeb}</a><br/><br/>
+				<b>Contactos:</b></h4>				
+				<div class="form-group">
+				<h:dataTable 
+					title="#{proveedor.ver(vete.codigo)}"
+					value="#{proveedor.newproveedor.listaTelefonos}"
+					var="telefono"  id="tablaTelefono">
+					
+					<h:column>
+					<h4>
+						#{telefono.numero}
+					</h4>
+					</h:column>
+				</h:dataTable>
+				
+				</div>
+				</div>
+			
+			
+				</h:column>
+					
+
+				<h:column>
+				<p align="right">
+					<h:commandButton value="Editar" action="prov_proveedor_editar"
+						class="btn btn-success "  /></p>
+						<br/>
+						<br/>
+						<br/>
+						<img src="#{proveedor.newproveedor.urlFotoPerfil}"  width="125" height="125"/>
+						
+				</h:column>
+				</h:dataTable>
+
+			<div class="col-lg-12 text-center">
+				<hr class="star-primary" />
+			</div>
+
+
+			<h:commandButton value="Listar Proveedores"
+				action="adm_listado_proveedor"
+				class="btn btn-success" />
+				
+
+		    <br />
+
+
+
+		</h:form>
+	</ui:define>
+</ui:composition> 
+</html>

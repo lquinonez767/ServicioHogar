@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+
+<ui:composition template="prov_plantilla.xhtml">
+	<ui:define name="pageTitle">Listado Productos</ui:define>
+		
+		<ui:define name="listImagen">		
+		
+            <img src="#{proveedor.newproveedor.urlFotoPerfil}" class="img-rounded"  width="125" height="125"/>
+            <br/>
+        </ui:define>
+
+	<ui:define name="contenido">
+		
+		<h:form>
+		<br/>
+		<br/>
+		
+		<div class="col-lg-12 text-center">
+				<h2>NOTIFICACIONES</h2>
+				<hr class="star-primary" />
+			</div>
+		
+		
+    <p:growl id="growl" life="2000" />
+     
+      <label for="username">Notificacion</label><br/>
+     
+      <h:inputText id="username" value="#{notificaciones.mensaje}"></h:inputText>
+     
+      <p/>
+       
+    <p:commandButton value="Enviar Mensaje" id="ajax" update="growl" actionListener="#{notificaciones.buttonAction}" styleClass="ui-priority-primary" />
+ 	
+
+ 	
+   </h:form>
+		
+	</ui:define>
+</ui:composition>
+</html>
+

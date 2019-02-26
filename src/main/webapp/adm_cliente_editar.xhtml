@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	  xmlns:p="http://primefaces.org/ui"> 
+
+
+<ui:composition template="adm_plantilla.xhtml">
+	<ui:define name="pageTitle">Cliente Edicion</ui:define>
+
+
+
+	<ui:define name="contenido">
+		<h:form enctype="multipart/form-data">
+
+
+			<div class="form-group" align="center">
+				<h2>Cliente Edicion</h2>
+				<hr class="star-primary" />
+			</div>
+			
+			<div class="alert alert-info">
+			    <strong>Info!</strong> Los campos que contienen * son obligatorios.
+			</div>
+
+			<div class="form-group">
+				<label>* Nombre:</label>
+				<h:inputText value="#{cliente_bean.newCliente.nombre}" id="txtNombre"
+					class="form-control" />
+				<h:message for="txtNombre" />
+			</div>
+			<div class="form-group">
+				<label>Edad:</label>
+				<h:inputText value="#{cliente_bean.newCliente.edad}" id="txtEdad"
+					class="form-control" />
+				<h:message for="txtEdad" />
+			</div>
+			
+			<div class="form-group">
+				<label>Fecha de nacimiento:</label><br/>
+				<p:calendar id="fechanac" value="#{cliente_bean.fechaNacimiento}" pattern="dd-MM-yyyy" mask="true"/>
+				<p:message for="fechanac"></p:message>
+			</div>
+			
+			
+			
+					
+			
+			<br />
+			<br />
+
+			<h:commandButton value="Actualizar"  action="adm_listado_cliente"
+			actionListener="#{cliente_bean.guardar()}"
+				class="btn btn-success"  />
+				<label></label>
+		    <h:commandButton value="Listar Clientes"
+				action="adm_listado_cliente"
+				class="btn btn-warning" />
+				
+		    
+			<br />
+			<br />
+			<br />
+			<br />
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

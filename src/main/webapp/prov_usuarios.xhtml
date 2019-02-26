@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<ui:composition template="prov_plantilla.xhtml">
+	<ui:define name="pageTitle">Listado Usuarios</ui:define>
+
+		<ui:define name="listImagen">		
+		
+            <img src="#{proveedor.newproveedor.urlFotoPerfil}" class="img-rounded"  width="125" height="125"/>
+            <br/>
+        </ui:define>
+
+	<ui:define name="contenido">
+		<h:form>
+			
+			
+			<div class="col-lg-12 text-center">
+				<h2>LISTADO DE CLIENTES</h2>
+				<hr class="star-primary" />
+			</div>
+
+			<h:dataTable value="#{usuario.listaUsuarios}" var="user"
+				class="table">
+				<h:column>
+					<img src="#{user.urlFotoPerfil}" class="img-rounded" width="50" height="50"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Codigo</f:facet>
+				#{user.codigo}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Nombre</f:facet>
+				#{user.nombre}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Correo</f:facet>
+				#{user.correo}
+				</h:column>
+								
+								
+				<h:column>
+					<f:facet name="header">Acciones</f:facet>
+					<h:commandButton value="Ver" action="prov_usuario_ver"
+						actionListener="#{usuario.ver(user.codigo)}"
+						class="btn btn-success" />	
+					<label></label>
+					<h:commandButton value="Editar" action="prov_usuario_editar"
+					    actionListener="#{usuario.ver(user.codigo)}"
+						class="btn btn-primary" 
+						/>
+						<label></label>
+					<h:commandButton value="Eliminar"
+						action="#{usuario.eliminar(user.codigo)}" 
+						class="btn btn-danger" />	
+										
+				</h:column>
+			</h:dataTable>
+			
+			<br/>
+			
+			<h:commandButton value="Registrar Cliente" action="prov_usuario"
+				actionListener="#{usuario.init()}" class="btn btn-success" />
+
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

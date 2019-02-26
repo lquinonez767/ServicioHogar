@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<ui:composition template="user_plantilla.xhtml">
+	<ui:define name="pageTitle">Citas</ui:define>
+
+		<ui:define name="listImagen">		
+		
+            <img src="#{usuario.newUsuario.urlFotoPerfil}" class="img-rounded"  width="125" height="125"/>
+            <br/>
+        </ui:define>
+
+	<ui:define name="contenido">
+		<h:form>
+			
+			
+			<div class="col-lg-12 text-center">
+				<h2>CITAS</h2>
+				<hr class="star-primary" />
+			</div>
+
+
+			<div class="form-group">
+				<h:dataTable value="#{cita.listaCita}" var="cit"
+					class="table" id="tablaMascota" >
+					<h:column>
+						<f:facet name="header">Codigo</f:facet>
+						#{cit.codigo}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Fecha</f:facet>
+						#{cit.fecha}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Hora</f:facet>
+						#{cit.hora}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Motivo</f:facet>
+						#{cit.motivo}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Cliente</f:facet>
+						#{cit.newProveCliente.nombreCliente}
+					</h:column>
+					
+
+
+				</h:dataTable>
+			</div>
+			
+			
+
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

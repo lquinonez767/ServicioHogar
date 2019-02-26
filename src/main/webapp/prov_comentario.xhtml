@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<ui:composition template="prov_plantilla.xhtml">
+	<ui:define name="pageTitle">Comentarios</ui:define>
+		<ui:define name="listImagen">		
+		
+            <img src="#{proveedor.newproveedor.urlFotoPerfil}" class="img-rounded"  width="125" height="125"/>
+            <br/>
+        </ui:define>
+
+	<ui:define name="contenido">
+		<h:form enctype="multipart/form-data">
+			
+			
+			<div class="col-lg-12 text-center">
+				<h2>#{proveedor.newproveedor.nombre}</h2>
+				<hr class="star-primary" />
+			</div>
+			
+ 			<h:dataTable
+ 			value="#{proveedor.newproveedor}" var="comentario" 
+					 id="tablaComentarios">			
+			<!-- Media top -->
+			
+			<h:column>
+			<div class="media">
+			  <div class="media-left media-top">
+			    <img src="imagenes/hogarlogo.jpg" class="media-object" style="width:100px"/>
+			  </div>
+			  <div class="media-body">
+			    <b>Direccion: </b>#{comentario.direccion} <br/>
+			    <b>Horario: </b>#{comentario.horario}<br/>
+			    <b>Sitio Web: </b>#{comentario.sitioWeb}<br/>
+			    <b>Contactos:</b>
+			     				
+				<h:dataTable 
+					
+					value="#{proveedor.newproveedor.listaTelefonos}"
+					var="telefono"  id="tablaTelefono">
+					
+					<h:column>
+					
+						#{telefono.numero}
+							
+					</h:column>
+				</h:dataTable>
+				
+
+			  </div>
+			  <hr class="star-primary" />
+			</div>
+			
+			</h:column>			
+			</h:dataTable>
+			
+			<div class="media">
+			  <div class="media-left">
+			    <img src="#{proveedor.newproveedor.urlFotoPerfil}" class="media-object" style="width:60px"/>
+			  </div>
+			  <div class="media-body">
+			    <h4 class="media-heading"><b><h:outputLabel value="#{proveedor.newproveedor.nombre}"/></b></h4>
+			
+			    <p><h:inputTextarea  value="#{proveedor.newComentario.comentario}" class="form-control" rows="3" id="comment" type="reset">
+			    
+			    </h:inputTextarea></p>
+ 
+			
+	 		    		    
+			  
+			  </div>
+			</div>
+			
+			
+			
+		
+			
+			 
+			
+			<h:commandButton 
+			action="#{proveedor.agregarComentario(login.proveedor.urlFotoPerfil, login.proveedor.nombre)}" 
+			value="Add Comentario" class="btn btn-default">
+			
+			</h:commandButton>
+   
+   			<br/>
+   			<br/>
+   			<br/>	
+   
+   			<h:dataTable value="#{proveedor.newproveedor.listaComentarios}" var="co" 
+					 id="tablaCo">
+  
+ 			<h:column>
+   			
+   			<div class="media">
+			  <div class="media-left">
+			    <img src="#{co.imagen}" class="media-object" style="width:60px"/>
+			  </div>
+			  <div class="media-body">
+			    <h4 ><h:outputLabel value="#{co.nombreusuario}"/><small><i>    #{co.fecha}</i></small></h4>
+
+			    <p>#{co.comentario}</p><br/>
+			  </div>
+			</div>
+			
+			</h:column>			
+			</h:dataTable>
+   			
+   			
+   			
+			<br/>
+			
+			
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

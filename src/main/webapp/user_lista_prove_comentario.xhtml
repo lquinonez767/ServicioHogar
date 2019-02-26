@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<ui:composition template="user_plantilla.xhtml">
+	<ui:define name="pageTitle">Listado Proveedores</ui:define>
+
+		<ui:define name="listImagen">		
+            <img src="#{usuario.newUsuario.urlFotoPerfil}" class="img-rounded"  width="125" height="125"/>
+            <br/>
+        </ui:define>
+
+	<ui:define name="contenido">
+		<h:form enctype="multipart/form-data">
+
+			
+			
+			<div class="col-lg-12 text-center">
+				<h2>Listado Proveedores</h2>
+				<hr class="star-primary" />
+			</div>
+
+			<h:dataTable value="#{proveedor.lisProvActivos}" var="prove" >
+								
+				<h:column>
+				
+				<div class="media" >
+			  <div class="media-left media-top ">
+			    <img src="#{prove.urlFotoPerfil}" class="media-object" style="width:100px"/>
+			  </div>
+			  <div class="media-body">
+			    <h4><b>#{prove.nombre}</b><br/></h4>
+			    <b>Direccion: </b>#{prove.direccion}<br/>
+				<b>Horario: </b>#{prove.horario}<br/>
+				<b>Sitio Web: </b><a href="#{prove.sitioWeb}">#{prove.sitioWeb}</a><br/>
+				<b>Contactos:</b> <br/>				
+				<div class="form-group">
+				<h:dataTable 
+					title="#{proveedor.ver(prove.codigo)}"
+					value="#{proveedor.newproveedor.listaTelefonos}"
+					var="telefono"  id="tablaTelefono">
+					
+					<h:column>
+						#{telefono.numero}
+							
+					</h:column>
+				</h:dataTable>
+			</div>
+				
+				
+			  </div>
+			  <hr class="star-primary" />
+			</div>
+			
+				</h:column>
+						
+				<h:column>
+				  
+					<label>Calificacion:</label>
+       				<p:rating value="#{valoracion.newValoracion.puntaje}" >
+       					<p:ajax event="rate" listener="#{valoracion.guardar()}" >
+       					
+       					</p:ajax>
+       				</p:rating>
+					
+						<br/>
+						<br/>
+				
+								
+						
+					<h:commandButton value="Comentar"
+						action="#{proveedor.comentario(prove.codigo)}"
+						class="btn btn-success">
+						</h:commandButton>				
+						<br/>
+						<br/>
+						<h:commandButton value="Localizacion Mapa"
+						action="#{proveedor.cargarMapa(vete)}"
+						class="btn btn-primary">
+						</h:commandButton>
+						<br/>
+				</h:column>
+			</h:dataTable>
+			
+			
+			
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

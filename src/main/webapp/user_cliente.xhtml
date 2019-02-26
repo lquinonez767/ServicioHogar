@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	  xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="user_plantilla.xhtml">
+	<ui:define name="pageTitle">Registro de Cliente</ui:define>
+
+		<ui:define name="listImagen">		
+		
+            <img src="#{usuario.newUsuario.urlFotoPerfil}" class="img-rounded"  width="125" height="125"/>
+            <br/>
+        </ui:define>
+
+	<ui:define name="contenido">
+		<h:form enctype="multipart/form-data">
+
+			
+			<div class="form-group" align="center">
+				<h2>Registro de Cliente</h2>
+				<hr class="star-primary" />
+			</div>
+			
+			<div class="alert alert-info">
+			    <strong>Info!</strong> Los campos que contienen * son obligatorios.
+			</div>
+
+			<div class="form-group">
+				<label>* Nombre:</label>
+				<h:inputText value="#{cliente_bean.newCliente.nombre}" id="txtNombre"
+					class="form-control" 
+					pt:placeholder="Ingrese Nombre:" />
+				<h:message for="txtNombre" />
+			</div>
+			<div class="form-group">
+				<label>Edad:</label>
+				<h:inputText value="#{cliente_bean.newCliente.edad}" id="txtEdad"
+					class="form-control"
+					pt:placeholder="Ingrese edad" />
+				<h:message for="txtEdad" />
+			</div>
+			<div class="form-group">
+				<label>Fecha de nacimiento:</label><br/>
+				<p:calendar id="fechanac" value="#{cliente_bean.fechaNacimiento}" pattern="dd-MM-yyyy" mask="true"/>
+				<p:message for="fechanac"></p:message>
+			</div>
+						
+						
+										
+					
+		
+			<div class="form-group">
+				<h:outputLabel value="Seleccione una foto:" />
+				<h:inputFile id="subidaFM" value="#{cliente_bean.fotoCliente}"/>
+				<h:message for="subidaFM" />
+			</div>
+			
+			<br />
+			<br />
+
+			<h:commandButton value="Guardar" action="user_listado_cliente"
+			actionListener="#{cliente_bean.agregarClienteUser()}"
+				class="btn btn-success "  />
+		    
+				
+		    <br />
+			<br />
+			<br />
+			
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

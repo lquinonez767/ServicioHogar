@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	  xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="prov_plantilla.xhtml">
+	<ui:define name="pageTitle">Disponibilidad</ui:define>
+
+		<ui:define name="listImagen">		
+		
+            <img src="#{proveedor.newproveedor.urlFotoPerfil}" class="img-rounded"  width="125" height="125"/>
+            <br/>
+        </ui:define>
+
+	<ui:define name="contenido">
+		<h:form enctype="multipart/form-data">
+
+			
+			<div class="form-group" align="center">
+				<h2>TIEMPO DISPONIBLE</h2>
+				<hr class="star-primary" />
+			</div>
+			
+			<div class="alert alert-info">
+			    <strong>Info!</strong> Los campos que contienen * son obligatorios.
+			</div>
+			
+
+			<div class="form-group">
+				<label>* Fecha:</label><br/>
+				<p:calendar id="fecha" value="#{disponible.fechaDisponible}" pattern="dd-MM-yyyy" mask="true"/>
+				<p:message for="fecha"></p:message>
+			</div>
+			
+			<div class="form-group">
+			<label>* Hora Inicial:</label><br/>
+				<p:calendar id="timeI" value="#{disponible.horaInicio}"
+					pattern="HH:mm" timeOnly="true" />
+				<p:message for="timeI"></p:message>
+			</div>
+			
+			<div class="form-group">
+			<label>* Hora Final:</label><br/>
+				<p:calendar id="timeF" value="#{disponible.horaFin}"
+					pattern="HH:mm" timeOnly="true" />
+				<p:message for="timeF"></p:message>
+			</div>
+			
+			<br/>
+			
+			<h:commandButton value="Guardar" 
+			actionListener="#{disponible.guardar()}"
+				class="btn btn-success "  />
+						
+			<br/>
+			<br/>
+						
+			<h:dataTable value="#{disponible.listaDisponible}" var="co" 
+					 id="tablaCo" class="table table-striped">
+   			
+				<h:column>
+					<f:facet name="header"><center>Fecha</center></f:facet>
+					<h:outputText value="#{co.fecha}" class="form-control"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header"><center>Hora de Inicio</center></f:facet>
+					<h:outputText value="#{co.horaInicio}" class="form-control"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header"><center>Hora Final</center></f:facet>
+					<h:outputText value="#{co.horaFin}" class="form-control"/>
+				</h:column>
+				<h:column> 
+					<center>
+					<f:facet name="header"><center>Eliminar</center></f:facet> 
+					<h:commandButton value="X" action="#{disponible.borraDisponibilidad(co.codigo)}" class="btn btn-danger"> 
+					</h:commandButton> 
+					</center>
+				</h:column>	
+			</h:dataTable>
+
+			
+		    
+				
+		    <br />
+			<br />
+			<br />
+			
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

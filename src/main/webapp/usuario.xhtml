@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	  xmlns:p="http://primefaces.org/ui"> 
+
+<ui:composition template="plantilla.xhtml">
+	<ui:define name="pageTitle">Usuario</ui:define>
+	
+
+
+	<ui:define name="contenido" >
+		<h:form  enctype="multipart/form-data">
+	<br/>
+	<br/>
+	<br/>
+			
+			<div class="form-group" align="center">
+				<h2>REGISTRO DE USUARIO</h2>
+				<hr class="star-primary" />
+			</div>
+			
+			<div class="alert alert-info">
+			    <strong>Info!</strong> Los campos que contienen * son obligatorios.
+			</div>
+						
+			<div class="form-group">
+			<label>* Nombre:</label>
+			<h:inputText value="#{usuario.newUsuario.nombre}" id="txtNombre"
+			class="form-control"
+			pt:placeholder="Nombre"/>
+			<h:message for="txtNombre" />
+			</div>
+			<div class="form-group">
+			<label>* Correo:</label>
+			<h:inputText value="#{usuario.newUsuario.correo}" id="txtCorreo"
+			class="form-control"
+			pt:placeholder="Correo"/>
+			<h:message for="txtCorreo" />
+			</div>
+			<div class="form-group">
+			<label>* Username:</label>
+			<h:inputText value="#{usuario.newUsuario.username}" id="txtUsername"
+			class="form-control"
+			pt:placeholder="Username"/>
+			<h:message for="txtUsername" />
+			</div>
+			<div class="form-group">
+			<label>* Password:</label>
+			<h:inputText value="#{usuario.newUsuario.password}" id="txtPassword"
+			class="form-control"
+			pt:placeholder="Password"/>
+			<h:message for="txtPassword" />
+			</div>
+			
+			<div class="form-group">
+				<label>* Seleccione su Proveedor:</label>
+				<h:selectOneMenu value="#{usuario.nomProve}">
+					<f:selectItems value="#{usuario.listaProveedores}" var="listprove"
+						itemValue="#{listprove.nombre}" itemLabel="#{listprove.nombre}"/>					
+				</h:selectOneMenu>			
+			</div>
+			
+			<div class="form-group">
+				<h:outputLabel value="Seleccione una foto de perfil" />
+				<h:inputFile id="subidaFP" value="#{usuario.fotoPerfil}"/>
+				<h:message for="subidaFP" />
+			</div>
+					
+
+				<h:commandButton action="#{usuario.agregarTelefono()}" value="Add Contacto" class="btn btn-default"/>
+				
+				<h:dataTable value="#{usuario.newUsuario.listaTelefonos}" var="telefono" 
+					class="table" id="tablaTelefonos">
+			
+				<h:column>
+					<f:facet name="header">Numero</f:facet>
+					<h:inputText value="#{telefono.numero}" class="form-control"
+					pt:placeholder="Numero"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Tipo</f:facet>
+					<h:selectOneMenu value="#{telefono.tipoTelefono}">
+						<f:selectItem itemLabel="Seleccione"/>
+						<f:selectItem itemLabel="Convencional" itemValue="Convencional"/>
+						<f:selectItem itemLabel="Movil" itemValue="Movil"/>
+					</h:selectOneMenu>
+				</h:column>	
+				 
+				<h:column> 
+				<f:facet name="header">Eliminar</f:facet> 
+				<h:commandButton value="X" action="#{usuario.borraVistaTelefono(telefono.codigo)}" class="btn btn-danger"> 
+				</h:commandButton> 
+				</h:column>
+				 
+			</h:dataTable>
+
+			
+
+			<center>
+				<h:commandButton value="Registrarse" action="login"
+				actionListener="#{usuario.registroUsuario()}" 
+					
+					class="btn btn-primary " />
+			</center>
+
+
+
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

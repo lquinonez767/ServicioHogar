@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+		<title><ui:insert name="pageTitle">Page Title</ui:insert></title>
+		
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous"/>
+		
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous"/>
+		
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+
+		 <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 300%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+  </style>
+
+</h:head> 
+<body> 
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">AppServicios</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="user_perfil.xhtml"><span class="glyphicon glyphicon-pencil"/> Perfil</a></li>
+        <li class="active" ><a href="user_lista_prove_comentario.xhtml"><span class="glyphicon glyphicon-home"/> Proveedores</a></li>
+        <li><a href="user_listado_cliente.xhtml"><span class="glyphicon glyphicon-pencil"/> Clientes</a></li>
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="login.xhtml"><span class="glyphicon glyphicon-log-out"></span> Cerrar Sesion</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+    <h3>#{usuario.newUsuario.nombre}</h3>
+    <ui:insert name="listImagen">
+            <span>Página en construcción</span>
+        </ui:insert>
+        <br/>
+      <p><a href="user_perfil.xhtml"><span class="glyphicon glyphicon-pencil"/> Perfil</a></p>
+      <p><a href="user_lista_prove_comentario.xhtml"><span class="glyphicon glyphicon-home"/> Proveedores</a></p>
+      <p><a href="user_listado_cliente.xhtml"><span class="glyphicon glyphicon-pencil"/> Clientes</a></p>
+      <p><a href="user_cliente.xhtml"><span class="glyphicon glyphicon-plus"/> Registro Cliente</a></p>
+      <p><a href="user_listado_citas.xhtml"><span class="glyphicon glyphicon-calendar"/> Citas</a></p>
+      <br/>
+      <p><a href="login.xhtml"><span class="glyphicon glyphicon-log-out"/> Cerrar Sesion</a></p>
+	  
+    </div>
+    
+    
+    <div class="col-sm-8 text-left"> 
+      <ui:insert name="contenido">
+            <span>Página en construcción</span>
+        </ui:insert>
+        <br/>
+        <br/>
+        <br/>
+    </div>
+    
+    
+  </div>
+</div>
+
+<footer class="container-fluid text-center">
+  <p>Footer Text</p>
+</footer>
+
+</body> 
+</html>

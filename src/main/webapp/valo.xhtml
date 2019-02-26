@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<ui:include src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" />
+<ui:include src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" />
+<ui:composition template="plantilla.xhtml">
+	<ui:define name="pageTitle">Comentarios</ui:define>
+
+
+
+	<ui:define name="contenido">
+		<h:form>
+			<br />
+			<br />
+			<br />
+			
+			
+			<div class="col-lg-12 text-center">
+				<h2>#{proveedor.newproveedor.nombre}</h2>
+				<hr class="star-primary" />
+			</div>
+			
+ 			<h:dataTable
+ 			value="#{proveedor.newproveedor}" var="comentari" 
+					 >			
+			<!-- Media top -->
+			
+			<h:column>
+			<div class="media">
+			  <div class="media-left media-top">
+			    <img src="hogarlogo.jpg" class="media-object" style="width:100px"/>
+			  </div>
+			  <div class="media-body">
+			    <b>Direccion: </b>#{comentari.direccion} <br/>
+			    <b>Horario: </b>#{comentari.horario}<br/>
+			    <b>Sitio Web: </b>#{comentari.sitioWeb}<br/>
+			    <b>Contactos:</b>
+			     				
+<h:dataTable 
+					
+					value="#{proveedor.newproveedor.listaTelefonos}"
+					var="telefono"  id="tablaTelefono">
+					
+					<h:column>
+					
+						#{telefono.numero}
+							
+					</h:column>
+				</h:dataTable>
+				
+
+			  </div>
+			  <hr class="star-primary" />
+			</div>
+			
+			</h:column>			
+			</h:dataTable>
+			
+			<h:commandButton action="#{proveedor.agregarValoracion()}" value="Add Valoracion" class="btn btn-default"/>
+   
+			<h:dataTable value="#{veterinaria.newveterinaria.listaValoraciones}" var="va" 
+					class="table" id="tablaCo">
+ 
+ 			<h:column>	
+			<div class="form-group">
+			  <label>Comentario:</label>
+			  <h:inputText value="#{va.puntaje}" />
+			  <h:inputTextarea  value="#{va.puntaje}" class="form-control" rows="3" id="comment"></h:inputTextarea>
+			  <div class="btn-group">
+				  
+				  <h:selectOneRadio value="#{va.puntaje}">Excelente</h:selectOneRadio>
+				  <h:selectOneRadio value="#{va.puntaje}">Bueno</h:selectOneRadio>
+				  <h:selectOneRadio value="#{va.puntaje}">Malo</h:selectOneRadio>
+				  <br/>
+				  <label class="radio-inline"><input type="radio" name="optradio" value="#{va.puntaje}">Excelente</input></label>
+				<label class="radio-inline"><input type="radio" name="optradio" value="#{va.puntaje}">Bueno</input></label>
+				<label class="radio-inline"><input type="radio" name="optradio" value="#{va.puntaje}">Malo</input></label>
+				</div>
+			</div>
+			</h:column>			
+			</h:dataTable>
+			<br/>
+			
+			<h:commandButton value="Guardar" action="#{veterinaria.guardar()}"
+				class="btn btn-success btn-lg btn-block" />
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

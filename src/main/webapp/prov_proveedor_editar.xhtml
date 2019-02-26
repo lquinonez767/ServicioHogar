@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<ui:composition template="prov_plantilla.xhtml">
+	<ui:define name="pageTitle">Proveedor Edicion</ui:define>
+	
+			
+
+		<ui:define name="listImagen">		
+		
+            <img src="#{login.proveedor.urlFotoPerfil}" class="img-rounded"  width="125" height="125"/>
+            <br/>
+        </ui:define>
+
+	<ui:define name="contenido">
+		<h:form enctype="multipart/form-data">
+				
+			
+
+			
+			<div class="form-group" align="center">
+				<h2>#{proveedor.newproveedor.nombre}</h2>
+				<hr class="star-primary" />
+			</div>
+			
+			<div class="alert alert-info">
+			    <strong>Info!</strong> Los campos que contienen * son obligatorios.
+			</div>
+			
+			<img src="#{proveedor.newproveedor.urlFotoPortada}"  width="800" height="300"/>
+			
+			<br/>
+			<br/>	
+
+			<div class="form-group">
+				<label>* Nombre:</label>
+				<h:inputText value="#{proveedor.newproveedor.nombre}" id="txtNombre"
+					class="form-control" />
+				<h:message for="txtNombre" />
+			</div>
+			<div class="form-group">
+				<label>* Correo:</label>
+				<h:inputText value="#{proveedor.newproveedor.correo}" id="txtCorreo"
+					class="form-control" />
+				<h:message for="txtCorreo" />
+			</div>
+			<div class="form-group">
+				<label>* Username:</label>
+				<h:inputText value="#{proveedor.newproveedor.username}" id="txtUsername"
+				class="form-control"/>
+				<h:message for="txtUsername" />
+			</div>
+				<div class="form-group">
+				<label>* Password:</label>
+				<h:inputText value="#{proveedor.newproveedor.password}" id="txtPassword"
+				class="form-control"/>
+				<h:message for="txtPassword" />
+			</div>
+			<div class="form-group">
+				<label>* Direccion:</label>
+				<h:inputText value="#{proveedor.newproveedor.direccion}" id="txtDireccion"
+					class="form-control" />
+				<h:message for="txtDireccion" />
+			</div>
+			<div class="form-group">
+				<label>Sitio Web:</label>
+				<h:inputText value="#{proveedor.newproveedor.sitioWeb}" id="txtSitioWeb"
+					class="form-control" />
+				<h:message for="txtSitioWwb" />
+			</div>
+			<div class="form-group">
+				<label>* Horario:</label>
+				<h:inputText value="#{proveedor.newproveedor.horario}" id="txtHorario"
+					class="form-control" />
+				<h:message for="txtHorario" />
+			</div>
+			
+			<div class="form-group">
+				<h:outputLabel value="Cambiar foto de perfil" />
+				<h:inputFile id="subidaFP" value="#{proveedor.fotoPerfil}"/>
+				<h:message for="subidaFP" />
+			</div>
+			
+			<div class="form-group">
+				<h:outputLabel value="Cambiar foto de portada" />
+				<h:inputFile id="subidaFF" value="#{proveedor.fotoPortada}"/>
+				<h:message for="subidaFF" />
+			</div>
+			
+			
+			
+			<br />
+			<br />
+
+			<h:commandButton value="Actualizar" action="login"
+			actionListener="#{proveedor.guardar()}"
+				class="btn btn-success "  />
+				
+
+		    <br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+
+		</h:form>
+	</ui:define>
+</ui:composition> 
+</html>

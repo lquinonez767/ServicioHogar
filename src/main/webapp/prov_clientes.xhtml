@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<ui:composition template="prov_plantilla.xhtml">
+	<ui:define name="pageTitle">Listado Mascotas</ui:define>
+
+		<ui:define name="listImagen">		
+		
+            <img src="#{veterinaria.newveterinaria.urlFotoPerfil}" class="img-rounded"  width="125" height="125"/>
+            <br/>
+        </ui:define>
+
+	<ui:define name="contenido">
+		<h:form>
+			
+			
+			<div class="col-lg-12 text-center">
+				<h2>LISTADO DE MASCOTAS</h2>
+				<hr class="star-primary" />
+			</div>
+
+			<div class="form-group">
+				<h:dataTable value="#{mascota_bean.listaMascotasActivo}" var="mascota"
+					class="table" id="tablaMascota" >
+					<h:column>
+						<img src="#{mascota.urlFotoMascota}" class="img-rounded" width="50" height="50"/>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Codigo</f:facet>
+						#{mascota.codigo}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Nombre</f:facet>
+						#{mascota.nombre}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Edad</f:facet>
+						#{mascota.edad}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Genero</f:facet>
+						#{mascota.genero}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Fecha de nacimiento</f:facet>
+						#{mascota.fechaNacimiento}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Acciones</f:facet>
+								
+							<h:commandButton value="Diagnostico" action="vet_mascota_ver"
+								actionListener="#{mascota_bean.ver(mascota.codigo)}"
+								class="btn btn-success" />
+								<label></label>
+							<h:commandButton value="Editar" action="vet_mascota_editar"
+								actionListener="#{mascota_bean.ver(mascota.codigo)}"
+								class="btn btn-primary" />
+								<label></label>
+							<h:commandButton value="Eliminar"
+								action="#{mascota_bean.eliminar(mascota.codigo)}" actionListener="registro_mascota"
+								class="btn btn-danger" />	
+								
+					</h:column>
+				</h:dataTable>
+			</div>
+			
+			<h:commandButton value="Registrar Mascota"
+				action="vet_mascota"
+				actionListener="#{mascota_bean.limpiarTodo()}"
+				class="btn btn-success" />
+
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

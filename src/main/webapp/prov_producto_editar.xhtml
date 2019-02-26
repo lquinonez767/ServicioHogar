@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	  xmlns:p="http://java.sun.com/jsf/html">
+
+
+<ui:composition template="vet_plantilla.xhtml">
+	<ui:define name="pageTitle">Registro Medicamento</ui:define>
+
+		<ui:define name="listImagen">		
+		
+            <img src="#{veterinaria.newveterinaria.urlFotoPerfil}" class="img-rounded"  width="125" height="125"/>
+            <br/>
+        </ui:define>
+
+	<ui:define name="contenido">
+		<h:form>
+			
+
+			
+			<div class="form-group" align="center">
+				<h2>EDICION DE MEDICAMENTOS</h2>
+				<hr class="star-primary" />
+			</div>
+			
+			<div class="alert alert-info">
+			    <strong>Info!</strong> Los campos que contienen * son obligatorios.
+			</div>
+			<div class="form-group">
+				<label>* Descripcion:</label>
+				<h:inputText value="#{medicamento_bean.newMedicamentoVacuna.descripcion}" id="txtDescripcion"
+					class="form-control" 
+					pt:placeholder="Ingrese la descripcion del medicamento" />
+				<h:message for="txtDescripcion" />
+			</div>
+			<div class="form-group">
+				<label>* Tipo:</label>
+				<h:inputText value="#{medicamento_bean.newMedicamentoVacuna.tipo}" id="txtTipo"
+					class="form-control" 
+					pt:placeholder="Ingrese la dosis del medicamento" />
+				<h:message for="txtTipo" />
+			</div>
+			
+			<br />
+			<br />
+
+			<h:commandButton value="Actualizar" action="vet_listado_medicamentos"
+			actionListener="#{medicamento_bean.guardar()}"
+				class="btn btn-success "  />
+				<label></label>
+		    <h:commandButton value="Listar Medicamentos"
+				action="vet_listado_medicamentos"
+				class="btn btn-warning " />
+				
+		    <br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

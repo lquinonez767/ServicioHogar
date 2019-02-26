@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<!-- 
+		Replace path to template, title, header and body
+		with actual data.
+	 -->
+<ui:composition template="adm_plantilla.xhtml">
+	<ui:define name="pageTitle">Listado Proveedores</ui:define>
+
+
+
+	<ui:define name="contenido">
+		<h:form>
+	
+			
+			
+			<div class="col-lg-12 text-center">
+				<h2>LISTADO PROVEEDORES</h2>
+				<hr class="star-primary" />
+			</div>
+
+			<h:dataTable value="#{proveedor.lisProvActivos}" var="prove"
+				class="table">
+				<h:column>
+					<img src="#{prove.urlFotoPerfil}"  width="50" height="50"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Codigo</f:facet>
+				#{prove.codigo}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Nombre</f:facet>
+				#{prove.nombre}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Direccion</f:facet>
+				#{prove.direccion}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Sitio Web</f:facet>
+				#{prove.sitioWeb}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Horario</f:facet>
+				#{prove.horario}
+				</h:column>
+								
+				<h:column>
+					<f:facet name="header">Acciones</f:facet>
+					<h:commandButton value="Ver" action="proveedor_ver"
+						actionListener="#{proveedor.ver(prove.codigo)}"
+						class="btn btn-success" />
+						<label></label>
+					<h:commandButton value="Editar" action="adm_proveedor_editar"
+						actionListener="#{proveedor.editar(prove.codigo)}"
+						class="btn btn-primary" />
+						<label></label>
+					<h:commandButton value="Eliminar" 
+						actionListener="#{proveedor.eliminar(prove.codigo)}" 
+						class="btn btn-danger" />
+				</h:column>
+			</h:dataTable>
+
+
+			<h:commandButton value="Nuevo Proveedor" action="proveedor"
+				actionListener="#{proveedor.limpiarTodo()}" class="btn btn-success" />
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>

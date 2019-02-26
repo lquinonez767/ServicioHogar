@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	  xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="adm_plantilla.xhtml">
+	<ui:define name="pageTitle">Registro Cliente</ui:define>
+
+
+
+	<ui:define name="contenido">
+		<h:form enctype="multipart/form-data">
+
+			<div class="form-group" align="center">
+				<h2>REGISTRO CLIENTES</h2>
+				<hr class="star-primary" />
+			</div>
+			
+			<div class="alert alert-info">
+			    <strong>Info!</strong> Los campos que contienen * son obligatorios.
+			</div>
+
+			<div class="form-group">
+				<label>* Nombre:</label>
+				<h:inputText value="#{cliente_bean.newCliente.nombre}" id="txtNombre"
+					class="form-control" 
+					pt:placeholder="Ingrese el nombre" />
+				<h:message for="txtNombre" />
+			</div>
+			<div class="form-group">
+				<label>Edad:</label>
+				<h:inputText value="#{cliente_bean.newCliente.edad}" id="txtEdad"
+					class="form-control"
+					pt:placeholder="Ingrese la edad" />
+				<h:message for="txtEdad" />
+			</div>
+			<div class="form-group">
+				<label>Direccion:</label>
+				<h:inputText value="#{cliente_bean.newCliente.direccion}" id="txtDireccion"
+					class="form-control"
+					pt:placeholder="Ingrese la direccion" />
+				<h:message for="txtDireccion" />
+			</div>
+			<div class="form-group">
+				<label>Fecha de nacimiento:</label><br/>
+				<p:calendar id="fechanac" value="#{cliente_bean.fechaNacimiento}" pattern="dd-MM-yyyy" mask="true"/>
+				<p:message for="fechanac"></p:message>
+			</div>
+						
+		
+			
+			<div class="form-group">
+				<h:outputLabel value="Seleccione una foto:" />
+				<h:inputFile id="subidaFM" value="#{cliente_bean.fotoCliente}"/>
+				<h:message for="subidaFM" />
+			</div>
+			
+			<div class="col-lg-12 text-center">
+				<h2>INGRESAR RESULTADOS ATENCIÓN</h2>
+				<hr class="star-primary" />
+			</div>
+			
+			<h:commandButton value="(+) Valoración"
+				action="#{cliente_bean.agregarDiagnostico()}"
+				class="btn btn-default">
+			</h:commandButton>
+
+			<div class="form-group">
+			
+				<h:dataTable
+					value="#{cliente_bean.newCliente.listaDiagnosticos}"
+					var="diagnostico" class="table" id="tablaDiagnostico">
+					<h:column>
+					<f:facet name="header"><center>Ficha</center></f:facet>					
+						<div class="form-group">
+						<label>* Fecha:</label><br/>
+							<p:calendar id="fecha" value="#{cliente_bean.fecha}" pattern="dd-MM-yyyy" mask="true" mode="inline"/>
+							<p:message for="fecha"></p:message>
+						</div>
+						
+						<div class="form-group">
+							<label>* Descripción:</label>
+							<h:inputText value="#{diagnostico.descripcion}" id="txtDescripcion"
+								class="form-control"
+								pt:placeholder="Ingrese la descripcion" />
+							<h:message for="txtDescripcion" />
+						</div>
+						
+						<div class="form-group">
+							<label>* Producto Recomendado:</label>
+							<h:selectOneMenu value="#{diagnostico.producto}" 
+							id="itemsProducto">
+							<f:selectItems value="#{nuevoproductoservicio_bean.listaProductos}" var="productos"
+								itemValue="#{productos}" itemLabel="#{productos.descripcion}" />
+							<f:converter converterId="NuevoProducto_Converter" />
+							</h:selectOneMenu>
+						</div>
+						
+				
+						
+						<div class="form-group">
+						<label>Proxima Visita:</label><br/>
+							<p:calendar id="fechaproxi" value="#{cliente_bean.fechaProxi}" pattern="dd-MM-yyyy" mask="true"/>
+							<p:message for="fechaproxi"></p:message>
+						</div>
+						
+						<div class="form-group">
+							<label>Motivo:</label>
+							<h:inputText id="diagmotivo" value="#{diagnostico.motivo}"
+								class="form-control"
+								pt:placeholder="Motivo de la proxima cita" />
+							<h:message for="diagmotivo" />
+						</div>
+						
+					</h:column>
+				
+					<h:column>
+						
+						<f:facet name="header"><center>Acción</center></f:facet>
+						<center>
+						<br/>
+						<br/><br/><br/><br/><br/><br/><br/><br/>
+						<h:commandButton id="diagboton" value="Borrar"
+							action="#{cliente_bean.borraVistaDiagnostico(diagnostico)}"
+							class="btn btn-danger" />
+						</center>
+					</h:column>
+				</h:dataTable>
+			</div>
+			
+			<br />
+			<br />
+
+			<h:commandButton value="Guardar" action="listado_cliente"
+			actionListener="#{cliente_bean.guardar()}"
+				class="btn btn-success "  />
+				<label></label>
+			<h:commandButton value="Listar Usuarios"
+			action="listado_cliente"
+			class="btn btn-warning " /> 
+		    
+				
+		    <br />
+			<br />
+			<br />
+			
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
